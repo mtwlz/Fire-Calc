@@ -249,6 +249,7 @@ export default function App() {
             setResults={setFlResults}
           />
         )}
+        <span style={{ fontSize: '0.8rem', color: 'gray' }}>Version 0.1.3</span>
       </div>
     </div>
   );
