@@ -1,0 +1,162 @@
+:root {
+  color-scheme: light;
+  --app-bg: #f3f6fb;
+  --app-text: #111827;
+  --app-muted: #6b7280;
+  --app-surface: #ffffff;
+  --app-border: #d6dbe3;
+  --app-input: #fafafa;
+  --app-primary: #0066cc;
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --app-bg: #0f172a;
+  --app-text: #f8fafc;
+  --app-muted: #94a3b8;
+  --app-surface: #111827;
+  --app-border: #334155;
+  --app-input: #1f2937;
+  --app-primary: #60a5fa;
+}
+
+body {
+  margin: 0;
+  background: var(--app-bg);
+  color: var(--app-text);
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+#root {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+.app-shell {
+  min-height: 100vh;
+  background: var(--app-bg);
+  color: var(--app-text);
+  display: flex;
+  flex-direction: column;
+}
+
+.app-topBar {
+  padding: 14px 14px 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  position: sticky;
+  top: 0;
+  background: var(--app-bg);
+  z-index: 5;
+  border-bottom: 1px solid var(--app-border);
+}
+
+.app-brand {
+  font-weight: 1000;
+  font-size: 18px;
+  color: var(--app-text);
+}
+
+.app-topBarActions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.app-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--app-muted);
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.app-toggleInput {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.app-toggleTrack {
+  width: 44px;
+  height: 24px;
+  border-radius: 999px;
+  background: var(--app-border);
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  transition: background 0.2s ease;
+}
+
+.app-toggleTrack::after {
+  content: "";
+  position: absolute;
+  left: 3px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #fff;
+  transition: transform 0.2s ease;
+}
+
+.app-toggleInput:checked + .app-toggleTrack {
+  background: var(--app-primary);
+}
+
+.app-toggleInput:checked + .app-toggleTrack::after {
+  transform: translateX(20px);
+}
+
+.app-topBtn,
+.app-topBtnActive {
+  padding: 10px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--app-border);
+  background: var(--app-surface);
+  color: var(--app-text);
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.app-topBtnActive {
+  border-color: var(--app-primary);
+  background: var(--app-primary);
+  color: #fff;
+}
+
+.app-tabs {
+  display: flex;
+  gap: 10px;
+  padding: 0 14px 10px;
+}
+
+.app-tab,
+.app-tabActive {
+  flex: 1;
+  padding: 12px;
+  border-radius: 14px;
+  border: 1px solid var(--app-border);
+  background: var(--app-surface);
+  color: var(--app-text);
+  font-weight: 1000;
+  cursor: pointer;
+}
+
+.app-tabActive {
+  border-color: var(--app-primary);
+  background: var(--app-primary);
+  color: #fff;
+}
+
+.app-content {
+  flex: 1;
+}
