@@ -14,6 +14,7 @@ export default function FrictionLoss({
   CId,
   setCId,
   COEFFICIENTS,
+  coefficientBank,
   results,
   setResults,
 }) {
@@ -65,6 +66,9 @@ export default function FrictionLoss({
         <div className="page-sectionTitle">Hose Setup (Coefficient C)</div>
         <div style={{ marginTop: 10 }}>
           <div className="page-help">Select C</div>
+          <div className="page-help">
+            Using {coefficientBank === "low" ? "low-pressure" : "high-pressure"} hose coefficients.
+          </div>
           <select value={CId} onChange={(e) => setCId(e.target.value)} className="page-select">
             {COEFFICIENTS.map((c) => (
               <option key={c.id} value={c.id}>

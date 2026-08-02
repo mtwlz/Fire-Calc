@@ -70,6 +70,61 @@ body {
   gap: 10px;
 }
 
+.app-menuButton {
+  width: 42px;
+  height: 42px;
+  border-radius: 999px;
+  border: 1px solid var(--app-border);
+  background: var(--app-surface);
+  color: var(--app-text);
+  font-size: 20px;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.app-drawer {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.2s ease;
+  overflow: hidden;
+  border-bottom: 1px solid transparent;
+}
+
+.app-drawerOpen {
+  grid-template-rows: 1fr;
+  border-bottom-color: var(--app-border);
+}
+
+.app-drawerContent {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 0 14px 0;
+}
+
+.app-drawerOpen .app-drawerContent {
+  padding-bottom: 14px;
+}
+
+.app-drawerSection {
+  background: var(--app-surface);
+  border: 1px solid var(--app-border);
+  border-radius: 14px;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.app-drawerTitle {
+  font-size: 13px;
+  font-weight: 900;
+  color: var(--app-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
 .app-toggle {
   display: inline-flex;
   align-items: center;
@@ -117,7 +172,9 @@ body {
 }
 
 .app-topBtn,
-.app-topBtnActive {
+.app-topBtnActive,
+.app-bankButton,
+.app-bankButtonActive {
   padding: 10px 12px;
   border-radius: 999px;
   border: 1px solid var(--app-border);
@@ -127,10 +184,17 @@ body {
   cursor: pointer;
 }
 
-.app-topBtnActive {
+.app-topBtnActive,
+.app-bankButtonActive {
   border-color: var(--app-primary);
   background: var(--app-primary);
   color: #fff;
+}
+
+.app-bankToggleGroup {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
 }
 
 .app-tabs {

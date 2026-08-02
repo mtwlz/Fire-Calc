@@ -25,6 +25,7 @@ export default function EnginePressure({
   setCId,
   NOZZLES,
   COEFFICIENTS,
+  coefficientBank,
   results,
   setResults,
 }) {
@@ -76,6 +77,9 @@ export default function EnginePressure({
         <div className="page-sectionTitle">Hose Setup</div>
         <div style={{ marginTop: 10 }}>
           <div className="page-help">Select hose(s) in use.</div>
+          <div className="page-help">
+            Using {coefficientBank === "low" ? "low-pressure" : "high-pressure"} hose coefficients.
+          </div>
           <select value={CId} onChange={(e) => setCId(e.target.value)} className="page-select">
             {COEFFICIENTS.map((c) => (
               <option key={c.id} value={c.id}>
