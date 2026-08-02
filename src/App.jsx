@@ -249,7 +249,7 @@ export default function App() {
             setResults={setFlResults}
           />
         )}
-        <span style={{ fontSize: '0.8rem', color: 'gray' }}>Version 0.1.32</span>
+        <span style={{ fontSize: '0.8rem', color: 'gray' }}>Version 0.1.33</span>
       </div>
     </div>
   );
