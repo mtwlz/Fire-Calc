@@ -1,4 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faGaugeHigh, faDroplet, faGear } from "@fortawesome/free-solid-svg-icons";
 import EnginePressure from "./pages/EnginePressure";
 import FrictionLoss from "./pages/FrictionLoss";
 import "./styles/App.css";
@@ -115,7 +117,10 @@ export default function App() {
   return (
     <div className="app-shell">
       <div className="app-topBar">
-        <div className="app-brand">Fireflow</div>
+        <div className="app-brand">
+          <img src="/icon-192x192.png" alt="Fire Calc logo" className="app-brandLogo" />
+          Fire-Calc
+        </div>
 
         <div className="app-topBarActions">
           <button
@@ -124,7 +129,7 @@ export default function App() {
             aria-label={isDrawerOpen ? "Close settings" : "Open settings"}
             aria-expanded={isDrawerOpen}
           >
-            ☰
+            <FontAwesomeIcon icon={faGear} className="app-tabIcon" />
           </button>
         </div>
       </div>
@@ -180,23 +185,11 @@ export default function App() {
               </button>
             </div>
           </div>
-        </div>
-      </div>
 
-      {/* Tabs */}
-      <div className="app-tabs">
-        <button
-          onClick={() => setActiveTab("ep")}
-          className={activeTab === "ep" ? "app-tabActive" : "app-tab"}
-        >
-          Engine Pressure
-        </button>
-        <button
-          onClick={() => setActiveTab("fl")}
-          className={activeTab === "fl" ? "app-tabActive" : "app-tab"}
-        >
-          Friction Loss
-        </button>
+          <div className="app-drawerSection">
+            <span style={{ fontSize: '0.8rem', color: 'gray' }}>Version 0.1.4</span>
+          </div>
+        </div>
       </div>
 
       {/* Content */}
@@ -249,7 +242,29 @@ export default function App() {
             setResults={setFlResults}
           />
         )}
-        <span style={{ fontSize: '0.8rem', color: 'gray' }}>Version 0.1.33</span>
+      </div>
+
+      <div className="app-tabs" role="tablist" aria-label="Calculator views">
+        <button
+          onClick={() => setActiveTab("ep")}
+          className={activeTab === "ep" ? "app-tabActive" : "app-tab"}
+          role="tab"
+          aria-selected={activeTab === "ep"}
+        >
+          <FontAwesomeIcon icon={faGaugeHigh} className="app-tabIcon" />
+          <span className="app-tabLabel">Engine</span>
+          <span className="app-tabLabel">Pressure</span>
+        </button>
+        <button
+          onClick={() => setActiveTab("fl")}
+          className={activeTab === "fl" ? "app-tabActive" : "app-tab"}
+          role="tab"
+          aria-selected={activeTab === "fl"}
+        >
+          <FontAwesomeIcon icon={faDroplet} className="app-tabIcon" />
+          <span className="app-tabLabel">Friction</span>
+          <span className="app-tabLabel">Loss</span>
+        </button>
       </div>
     </div>
   );

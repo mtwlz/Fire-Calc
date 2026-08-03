@@ -58,10 +58,10 @@ export default function EnginePressure({
     <div className="page">
       <div>
         <div className="page-headerTitle">Engine Pressure</div>
-        <div className="page-headerSubtitle">Calculates pump discharge pressure (EP).</div>
+        <div className="page-headerSubtitle">Calculates target pump discharge pressure. Enter the values below and click "Calculate EP" to see the results at the bottom.</div>
       </div>
 
-      <div className="page-card">
+      {/* <div className="page-card">
         <div className="page-rowBetween">
           <div>
             <div className="page-label">Master Stream</div>
@@ -71,15 +71,12 @@ export default function EnginePressure({
             <span style={{ fontWeight: 700, color: "var(--app-text)" }}>{isMaster ? "Master" : "Non-master"}</span>
           </label>
         </div>
-      </div>
+      </div> */}
 
       <div className="page-card">
         <div className="page-sectionTitle">Hose Setup</div>
         <div style={{ marginTop: 10 }}>
-          <div className="page-help">Select hose(s) in use.</div>
-          <div className="page-help">
-            Using {coefficientBank === "low" ? "low-pressure" : "high-pressure"} hose coefficients.
-          </div>
+          <div className="page-help">Select {coefficientBank === "low" ? "low-pressure" : "high-pressure"} hose(s) in use.</div>
           <select value={CId} onChange={(e) => setCId(e.target.value)} className="page-select">
             {COEFFICIENTS.map((c) => (
               <option key={c.id} value={c.id}>
@@ -119,7 +116,7 @@ export default function EnginePressure({
 
       <div className="page-card">
         <div className="page-sectionTitle">Total Hose Length [{lengthUnit}]</div>
-        <div className="page-help">Enter the length of all hoses in {lengthUnit}.</div>
+        <div className="page-help">Enter the length of all hoses after the pump.</div>
         <input value={L} onChange={(e) => setL(e.target.value)} inputMode="decimal" className="page-input" />
       </div>
 
