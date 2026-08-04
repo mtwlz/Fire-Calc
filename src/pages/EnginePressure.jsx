@@ -61,18 +61,6 @@ export default function EnginePressure({
         <div className="page-headerSubtitle">Calculates target pump discharge pressure. Enter the values below and click "Calculate EP" to see the results at the bottom.</div>
       </div>
 
-      {/* <div className="page-card">
-        <div className="page-rowBetween">
-          <div>
-            <div className="page-label">Master Stream</div>
-          </div>
-          <label style={{ display: "flex", alignItems: "center", gap: 8 }}>
-            <input type="checkbox" checked={isMaster} onChange={(e) => setIsMaster(e.target.checked)} />
-            <span style={{ fontWeight: 700, color: "var(--app-text)" }}>{isMaster ? "Master" : "Non-master"}</span>
-          </label>
-        </div>
-      </div> */}
-
       <div className="page-card">
         <div className="page-sectionTitle">Hose Setup</div>
         <div style={{ marginTop: 10 }}>
