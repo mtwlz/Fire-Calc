@@ -118,7 +118,7 @@ export default function App() {
     <div className="app-shell">
       <div className="app-topBar">
         <div className="app-brand">
-          <img src="/icon-192x192.png" alt="Fire Calc logo" className="app-brandLogo" />
+          <img src="./icon-192x192.png" alt="Fire Calc logo" className="app-brandLogo" />
           Fire-Calc
         </div>
 
@@ -187,7 +187,7 @@ export default function App() {
           </div>
 
           <div className="app-drawerSection">
-            <span style={{ fontSize: '0.8rem', color: 'gray' }}>Version 0.1.4</span>
+            <span style={{ fontSize: '0.8rem', color: 'gray' }}>Version 0.1.41</span>
           </div>
         </div>
       </div>
