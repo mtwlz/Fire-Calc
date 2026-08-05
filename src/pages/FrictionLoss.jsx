@@ -59,13 +59,13 @@ export default function FrictionLoss({
     <div className="page">
       <div>
         <div className="page-headerTitle">Friction Loss</div>
-        <div className="page-headerSubtitle">Uses: FL = C · (Q/100)² · (L/100)</div>
+        <div className="page-headerSubtitle">Determines the pressure drop due to friction in a hose.</div>
       </div>
 
       <div className="page-card">
-        <div className="page-sectionTitle">Hose Setup (Coefficient C)</div>
+        <div className="page-sectionTitle">Hose Setup</div>
         <div style={{ marginTop: 10 }}>
-          <div className="page-help">Select C</div>
+          <div className="page-help">Select the hose diameter being used.</div>
           <div className="page-help">
             Using {coefficientBank === "low" ? "low-pressure" : "high-pressure"} hose coefficients.
           </div>
@@ -77,7 +77,7 @@ export default function FrictionLoss({
             ))}
           </select>
           <div style={{ marginTop: 8, color: "var(--app-muted)" }}>
-            Current C: <span style={{ fontWeight: 900, color: "var(--app-text)" }}>{C}</span>
+            Coefficient: <span style={{ fontWeight: 900, color: "var(--app-text)" }}>{C}</span>
           </div>
         </div>
       </div>
@@ -86,17 +86,17 @@ export default function FrictionLoss({
         <div className="page-sectionTitle">Inputs</div>
 
         <div style={{ marginTop: 10 }}>
-          <div className="page-help">Flow Rate Q [{flowUnit === "gpm" ? "GPM" : "L/min"}]</div>
+          <div className="page-help">Flow Rate [{flowUnit === "gpm" ? "GPM" : "L/min"}]</div>
           <input value={Q} onChange={(e) => setQ(e.target.value)} inputMode="decimal" className="page-input" />
         </div>
 
         <div style={{ marginTop: 10 }}>
-          <div className="page-help">Hose Total Length L (discharge line total) [{lengthUnit}]</div>
+          <div className="page-help">Hose Total Length (discharge line total) [{lengthUnit}]</div>
           <input value={L} onChange={(e) => setL(e.target.value)} inputMode="decimal" className="page-input" />
         </div>
 
         <button onClick={handleCalculate} className="page-primaryButton" style={{ marginTop: 12 }}>
-          Calculate FL
+          Calculate Friction Loss
         </button>
       </div>
 

@@ -66,6 +66,7 @@ body {
   color: var(--app-text);
   display: flex;
   align-items: center;
+  user-select: none;
 }
 
 .app-brandLogo {
@@ -96,6 +97,100 @@ body {
   border-color: var(--app-primary);
   background: rgba(0, 102, 204, 0.12);
   color: var(--app-primary);
+}
+
+.app-menuButtonReset {
+  border-color: #f97316;
+  background: rgba(249, 115, 22, 0.14);
+  color: #c2410c;
+}
+
+.app-modalOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0);
+  display: grid;
+  place-items: center;
+  z-index: 50;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 180ms ease;
+}
+
+.app-modalVisible {
+  background: rgba(15, 23, 42, 0.55);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.app-modalHidden {
+  background: rgba(15, 23, 42, 0);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.app-modal {
+  width: min(320px, calc(100vw - 32px));
+  max-width: 80%;
+  max-height: calc(100vh - 40px);
+  overflow: auto;
+  background: var(--app-surface);
+  border: 1px solid var(--app-border);
+  border-radius: 20px;
+  padding: 22px;
+  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.18);
+  transform: translateY(18px) scale(0.98);
+  opacity: 0;
+  transition: opacity 180ms ease, transform 180ms ease;
+}
+
+.app-modalEnter {
+  transform: translateY(0) scale(1);
+  opacity: 1;
+}
+
+.app-modalExit {
+  transform: translateY(18px) scale(0.98);
+  opacity: 0;
+}
+
+.app-modalTitle {
+  font-size: 20px;
+  font-weight: 900;
+  margin-bottom: 10px;
+}
+
+.app-modalBody {
+  color: var(--app-muted);
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.app-modalActions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.app-buttonSecondary,
+.app-buttonDanger {
+  min-width: 90px;
+  padding: 10px 14px;
+  border-radius: 12px;
+  border: 1px solid transparent;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.app-buttonSecondary {
+  background: var(--app-surface);
+  border-color: var(--app-border);
+  color: var(--app-text);
+}
+
+.app-buttonDanger {
+  background: #f97316;
+  color: white;
 }
 
 .app-drawer {

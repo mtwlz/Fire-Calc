@@ -58,7 +58,7 @@ export default function EnginePressure({
     <div className="page">
       <div>
         <div className="page-headerTitle">Engine Pressure</div>
-        <div className="page-headerSubtitle">Calculates target pump discharge pressure. Enter the values below and click "Calculate EP" to see the results at the bottom.</div>
+        <div className="page-headerSubtitle">Calculates target pump discharge pressure. Enter the values below and click "Calculate" to see the results at the bottom.</div>
       </div>
 
       <div className="page-card">
@@ -131,7 +131,7 @@ export default function EnginePressure({
       </div>
 
       <button onClick={handleCalculate} className="page-primaryButton">
-        Calculate EP
+        Calculate Engine Pressure
       </button>
 
       {results && (

@@ -76,6 +76,19 @@
   font-size: 15px;
 }
 
+.page-secondaryButton {
+  width: fit-content;
+  padding: 14px 16px;
+  border-radius: 14px;
+  border: 2px solid var(--app-primary);
+  background: var(--app-surface);
+  color: var(--app-primary);
+  font-weight: 900;
+  cursor: pointer;
+  font-size: 15px;
+  text-decoration: none;
+}
+
 .page-kv {
   display: flex;
   justify-content: space-between;

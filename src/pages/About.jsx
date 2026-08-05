@@ -1,11 +1,13 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "../styles/main.css";
+import { faCode } from "@fortawesome/free-solid-svg-icons";
 
 export default function About() {
     return (
         <div className="page">
             <div>
                 <div className="page-headerTitle">About</div>
-                <div className="page-headerSubtitle">Help, version info, and author details.</div>
+                <div className="page-headerSubtitle">Help and version information.</div>
             </div>
 
             <div className="page-card">
@@ -37,12 +39,31 @@ export default function About() {
             </div>
 
             <div className="page-card">
-                <div className="page-sectionTitle">Version</div>
+                    <div className="page-sectionTitle">Version</div>
                 <div className="page-kv">
                     <div className="page-k">Release Candidate</div>
-                    <div className="page-v">0.2.0</div>
+                    <div className="page-v">0.2.1</div>
                 </div>
             </div>
+            <div className="page-card">
+                <a
+                    href="https://github.com/mtwlz/Fire-Calc"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="page-secondaryButton"
+                    style={{ marginTop: 16, textAlign: "center", display: "inline-block" }}
+                >
+                    <FontAwesomeIcon icon={faCode} style={{ marginRight: 8 }} />
+                    View Source Code
+                </a>
+            </div>
+            <div className="page-card">
+                <div className="page-sectionTitle">Disclaimer</div>
+                <div className="page-help">
+                    The calculations are based on standard fire service formulas, but actual conditions may vary. Always follow your department's protocols and guidelines. This app is provided as a tool for estimation and should not replace professional judgment or training.
+                </div>
+            </div>
+        
         </div>
     );
 }

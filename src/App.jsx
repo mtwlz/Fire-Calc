@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faGaugeHigh, faDroplet, faGear, faCircleInfo, faTruckFast, faWater } from "@fortawesome/free-solid-svg-icons";
+import { faGaugeHigh, faDroplet, faGear, faCircleInfo, faTruckFast, faWater, faFire } from "@fortawesome/free-solid-svg-icons";
 import EnginePressure from "./pages/EnginePressure";
 import FrictionLoss from "./pages/FrictionLoss";
 import RelayPumpers from "./pages/RelayPumpers";
@@ -85,12 +85,91 @@ export default function App() {
   const [relayType, setRelayType] = useState("3");
   const [relayResults, setRelayResults] = useState(null);
   const [relayPerfResults, setRelayPerfResults] = useState(null);
+  const [showResetConfirm, setShowResetConfirm] = useState(false);
+  const [resetModalMounted, setResetModalMounted] = useState(false);
+  const [isResetModalActive, setIsResetModalActive] = useState(false);
+  const [previousTab, setPreviousTab] = useState("ep");
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [isTabReady, setIsTabReady] = useState(true);
   const pendingTabRef = useRef(null);
 
+  useEffect(() => {
+    let timeout;
+    let firstFrame;
+    let secondFrame;
+
+    if (showResetConfirm) {
+      setResetModalMounted(true);
+      firstFrame = window.requestAnimationFrame(() => {
+        secondFrame = window.requestAnimationFrame(() => {
+          setIsResetModalActive(true);
+        });
+      });
+    } else if (resetModalMounted) {
+      setIsResetModalActive(false);
+      timeout = window.setTimeout(() => setResetModalMounted(false), 180);
+    }
+
+    return () => {
+      window.clearTimeout(timeout);
+      window.cancelAnimationFrame(firstFrame);
+      window.cancelAnimationFrame(secondFrame);
+    };
+  }, [showResetConfirm, resetModalMounted]);
+
+  function getPreferredTheme() {
+    if (typeof window !== "undefined") {
+      return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+    }
+    return "light";
+  }
+
+  function resetAllFields() {
+    const defaultNozzle = NOZZLES.find((n) => n.id === "smooth") ?? NOZZLES[0];
+
+    setActiveTab("ep");
+    setTheme(getPreferredTheme());
+    setUnitSystem("imperial");
+    setNozzleId("smooth");
+    setIsMaster(defaultNozzle.isMaster);
+    setNP(String(defaultNozzle.psi));
+    setCoefficientBank("low");
+    setCId("2.5");
+    setQ("350");
+    setL("200");
+    setAppliances("0");
+    setElevDiff("0");
+    setRelayFlow("350");
+    setTankSize("2000");
+    setRelayMiles("1");
+    setFillSiteTime("5");
+    setDumpSiteTime("5");
+    setEpResults(null);
+    setFlResults(null);
+    setRelayResults(null);
+    setRelayPerfResults(null);
+    setIsDrawerOpen(false);
+    setShowResetConfirm(false);
+  }
+
   function handleTabChange(tab) {
-    if (tab === activeTab) return;
+    if (tab === activeTab) {
+      if (tab === "about") {
+        const target = previousTab === "about" ? "ep" : previousTab;
+        if (target !== activeTab) {
+          pendingTabRef.current = target;
+          setIsTabReady(false);
+        }
+      }
+      return;
+    }
+
+    if (tab === "about") {
+      setPreviousTab(activeTab);
+    } else if (activeTab === "about") {
+      setPreviousTab(tab);
+    }
+
     pendingTabRef.current = tab;
     setIsTabReady(false);
   }
@@ -117,7 +196,7 @@ export default function App() {
 
         <div className="app-topBarActions">
           <button
-            className="app-menuButton"
+            className={`app-menuButton ${isDrawerOpen ? "app-menuButtonActive" : ""}`}
             onClick={() => setIsDrawerOpen((open) => !open)}
             aria-label={isDrawerOpen ? "Close settings" : "Open settings"}
             aria-expanded={isDrawerOpen}
@@ -131,6 +210,13 @@ export default function App() {
             aria-selected={activeTab === "about"}
           >
             <FontAwesomeIcon icon={faCircleInfo} className="app-tabIcon" />
+          </button>
+          <button
+            className={`app-menuButton ${showResetConfirm ? "app-menuButtonReset" : ""}`}
+            onClick={() => setShowResetConfirm(true)}
+            aria-label="Reset all fields"
+          >
+            <FontAwesomeIcon icon={faFire} className="app-tabIcon" />
           </button>
         </div>
       </div>
@@ -188,6 +274,23 @@ export default function App() {
           </div>
         </div>
       </div>
+
+      {resetModalMounted ? (
+        <div className={`app-modalOverlay ${isResetModalActive ? "app-modalVisible" : "app-modalHidden"}`} role="dialog" aria-modal="true" aria-labelledby="reset-modal-title">
+          <div className={`app-modal ${isResetModalActive ? "app-modalEnter" : "app-modalExit"}`}>
+            <div className="app-modalTitle" id="reset-modal-title">Reset all fields?</div>
+            <div className="app-modalBody">This will restore every input field to its default value. Are you sure you want to continue?</div>
+            <div className="app-modalActions">
+              <button className="app-buttonSecondary" onClick={() => setShowResetConfirm(false)}>
+                No
+              </button>
+              <button className="app-buttonDanger" onClick={resetAllFields}>
+                Yes, reset
+              </button>
+            </div>
+          </div>
+        </div>
+      ) : null}
 
       {/* Content */}
       <div className="app-content">
